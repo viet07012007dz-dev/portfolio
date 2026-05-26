@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Bùi Quốc Việt</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#03060a;
+  --bg2:#060d14;
+  --card:#0b1520;
+  --card2:#0f1d2b;
+  --teal:#00e5b0;
+  --teal2:#00c49a;
+  --teal3:#00a882;
+  --blue:#4f8ef7;
+  --purple:#a78bfa;
+  --glow:rgba(0,229,176,0.18);
+  --glow2:rgba(0,229,176,0.08);
+  --border:rgba(0,229,176,0.1);
+  --border2:rgba(0,229,176,0.22);
+  --text:#dff0ea;
+  --muted:#6b9080;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--teal3);border-radius:2px;}
+
+/* ── CANVAS BACKGROUND ── */
+#canvas-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.45;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+  height:54px;width:min(860px,90vw);
+  background:rgba(6,13,20,0.75);
+  backdrop-filter:blur(24px);
+  border:1px solid var(--border2);
+  border-radius:100px;
+  box-shadow:0 0 40px rgba(0,229,176,0.06),0 8px 32px rgba(0,0,0,0.4);
+}
+.nav-logo{
+  font-family:var(--mono);font-size:15px;font-weight:600;
+  color:var(--teal);text-decoration:none;letter-spacing:1px;
+}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;
+  padding:6px 16px;border-radius:100px;transition:all 0.2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--teal);background:rgba(0,229,176,0.08);}
+.nav-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 8px var(--teal);animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* ── HERO ── */
+#home{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:120px 7% 80px;position:relative;z-index:1;
+}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--teal);
+  padding:8px 18px;border-radius:100px;
+  border:1px solid var(--border2);background:rgba(0,229,176,0.05);
+  margin-bottom:36px;width:fit-content;
+}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite;}
+
+.hero-name{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(56px,9vw,110px);
+  font-weight:800;line-height:0.92;
+  letter-spacing:-3px;
+  color:var(--teal);
+  margin-bottom:6px;
+  position:relative;
+}
+/* Glitch effect on hover */
+.hero-name:hover{animation:glitch 0.3s ease;}
+@keyframes glitch{
+  0%{text-shadow:none;}
+  20%{text-shadow:-2px 0 var(--blue),2px 0 var(--purple);}
+  40%{text-shadow:2px 0 var(--blue),-2px 0 var(--purple);}
+  60%{text-shadow:-2px 0 var(--purple),2px 0 var(--blue);}
+  80%{text-shadow:2px 0 var(--purple),-2px 0 var(--blue);}
+  100%{text-shadow:none;}
+}
+
+.hero-role{
+  font-family:var(--mono);font-size:clamp(13px,1.6vw,18px);
+  color:var(--muted);margin:24px 0 40px;font-weight:400;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-role::before{content:'>';color:var(--teal);font-weight:600;}
+
+.hero-cards{
+  display:flex;gap:12px;margin-bottom:44px;flex-wrap:wrap;
+}
+.hcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px 22px;
+  display:flex;flex-direction:column;gap:3px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  min-width:160px;
+}
+.hcard:hover{border-color:var(--border2);box-shadow:0 0 20px var(--glow2);}
+.hcard-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.hcard-val{font-size:14px;font-weight:600;color:var(--text);}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-main{
+  background:var(--teal);color:#03060a;
+  padding:13px 28px;border-radius:10px;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:0.3px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.btn-main::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+  opacity:0;transition:opacity 0.2s;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,229,176,0.35);}
+.btn-main:hover::after{opacity:1;}
+.btn-ghost{
+  border:1px solid var(--border2);color:var(--teal);
+  padding:12px 24px;border-radius:10px;
+  text-decoration:none;font-weight:600;font-size:13px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;background:transparent;
+}
+.btn-ghost:hover{background:rgba(0,229,176,0.06);box-shadow:0 0 20px var(--glow2);}
+
+.hero-float{
+  position:absolute;right:4%;top:50%;transform:translateY(-50%);
+  z-index:1;width:360px;height:360px;
+}
+#net-canvas{width:100%;height:100%;}
+
+/* ── SECTION COMMONS ── */
+section{padding:96px 7%;position:relative;z-index:1;}
+.s-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:2px;color:var(--teal);
+  margin-bottom:14px;
+}
+.s-chip::before{content:'//';opacity:0.5;}
+.s-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(34px,5vw,58px);font-weight:800;
+  letter-spacing:-1.5px;color:var(--text);line-height:1.05;
+  margin-bottom:16px;
+}
+.s-desc{font-size:15px;color:var(--muted);max-width:560px;line-height:1.8;margin-bottom:60px;}
+
+/* ── ABOUT ── */
+#gioi-thieu{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.about-text p{color:var(--muted);margin-bottom:18px;font-size:15px;line-height:1.9;}
+.terminal-quote{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:20px 22px;margin:28px 0;
+  font-family:var(--mono);font-size:13px;color:var(--teal);
+  line-height:1.7;position:relative;
+}
+.terminal-quote::before{
+  content:'> "';position:absolute;top:20px;left:22px;
+  color:var(--muted);font-size:13px;
+}
+.terminal-quote{padding-left:42px;}
+.terminal-quote::after{content:'"';color:var(--muted);}
+
+.goals{list-style:none;margin-top:16px;}
+.goals li{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:11px 0;border-bottom:1px solid var(--border);
+  font-size:14px;color:var(--muted);
+}
+.goals li:last-child{border:none;}
+.g-chk{
+  width:20px;height:20px;border-radius:4px;
+  background:rgba(0,229,176,0.1);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;color:var(--teal);font-size:11px;font-weight:800;
+}
+
+.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sk{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+  transition:border-color 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;
+}
+.sk::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--blue));opacity:0;
+  transition:opacity 0.2s;
+}
+.sk:hover{border-color:var(--border2);box-shadow:0 0 16px var(--glow2);}
+.sk:hover::after{opacity:1;}
+.sk-icon{font-size:20px;margin-bottom:8px;display:block;}
+.sk-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.sk-lv{font-family:var(--mono);font-size:10px;color:var(--muted);}
+.sk-bar{height:2px;background:rgba(255,255,255,0.05);border-radius:1px;margin-top:10px;overflow:hidden;}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:1px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1);}
+
+.info-panel{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:22px;margin-top:16px;
+}
+.info-panel h4{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:14px;}
+.ip-list{list-style:none;}
+.ip-list li{
+  padding:9px 0;border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--muted);
+  display:flex;align-items:center;gap:10px;
+}
+.ip-list li:last-child{border:none;}
+.ip-list li::before{content:'→';color:var(--teal);font-weight:700;font-family:var(--mono);}
+
+/* ── PROJECTS ── */
+#du-an{background:var(--bg);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;}
+
+.pcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+  position:relative;
+}
+/* top accent line */
+.pcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal) 50%,transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.pcard:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px var(--glow2);}
+.pcard:hover::before{opacity:1;}
+
+.ptop{padding:26px 26px 18px;position:relative;}
+.pnum{
+  position:absolute;top:16px;right:18px;
+  font-family:'Syne',sans-serif;font-size:64px;font-weight:800;
+  color:rgba(0,229,176,0.04);line-height:1;user-select:none;
+}
+.ptag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,229,176,0.07);color:var(--teal);
+  border:1px solid var(--border);
+  font-family:var(--mono);font-size:9px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1.5px;
+  padding:5px 12px;border-radius:100px;margin-bottom:14px;
+}
+.pcard h3{
+  font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
+  color:var(--text);line-height:1.3;margin-bottom:10px;max-width:82%;
+}
+.pcard>.ptop>p{font-size:13px;color:var(--muted);line-height:1.7;}
+.pbody{padding:0 26px 26px;}
+
+.res-box{
+  background:rgba(0,229,176,0.04);border:1px solid var(--border);
+  border-left:2px solid var(--teal);
+  border-radius:0 10px 10px 0;
+  padding:14px 16px;margin-bottom:16px;
+}
+.res-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:6px;}
+.res-txt{font-size:12px;color:var(--muted);line-height:1.6;}
+
+.dbox{
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  border-radius:12px;padding:18px;margin-bottom:16px;
+}
+.dbox h4{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:12px;}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+.tbl th{
+  background:rgba(0,229,176,0.06);color:var(--teal);
+  padding:9px 12px;text-align:left;font-weight:700;
+  font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1px;
+  border-bottom:1px solid var(--border);
+}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--muted);font-size:12px;}
+.tbl tr:last-child td{border:none;}
+.tbl tr:hover td{color:var(--text);}
+code.c{background:rgba(0,229,176,0.08);color:var(--teal);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:11px;}
+
+.bdg{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;font-family:var(--mono);}
+.b-ok{background:rgba(0,229,176,0.1);color:var(--teal);border:1px solid rgba(0,229,176,0.2);}
+.b-mid{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.2);}
+.b-bad{background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.2);}
+
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
+.cbox{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:13px;}
+.cbox-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:7px;}
+.cl-bad{color:#f87171;}
+.cl-ok{color:var(--teal);}
+.cbox p{font-size:12px;line-height:1.6;color:var(--muted);}
+.cres{margin-top:8px;padding:6px 10px;border-radius:6px;font-size:11px;font-weight:600;font-family:var(--mono);}
+.cres.bad{background:rgba(248,113,113,0.08);color:#f87171;}
+.cres.ok{background:rgba(0,229,176,0.08);color:var(--teal);}
+
+.prow3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.pbox{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;transition:border-color 0.2s;}
+.pbox:hover{border-color:var(--border2);}
+.pbox-icon{font-size:20px;margin-bottom:6px;display:block;}
+.pbox-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.pbox-desc{font-size:10px;color:var(--muted);line-height:1.5;}
+
+.step-list{list-style:none;counter-reset:s;}
+.step-list li{
+  counter-increment:s;display:flex;align-items:flex-start;gap:10px;
+  padding:8px 0;border-top:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.6;
+}
+.step-list li::before{
+  content:counter(s);background:var(--teal);color:#03060a;
+  width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+  font-family:var(--mono);
+}
+.principle{
+  padding:9px 14px;border-left:2px solid var(--teal);
+  background:rgba(0,229,176,0.04);border-radius:0 8px 8px 0;
+  margin-bottom:7px;font-size:12px;color:var(--muted);
+}
+.principle strong{color:var(--text);}
+
+.tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.tool{
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:6px;padding:3px 10px;
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  transition:border-color 0.2s,color 0.2s;
+}
+.tool:hover{border-color:var(--teal);color:var(--teal);}
+
+/* ── CONCLUSION ── */
+#tong-ket{background:var(--bg2);}
+.conc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.lcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:20px;margin-bottom:14px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  position:relative;overflow:hidden;
+}
+.lcard::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--teal),var(--blue));
+}
+.lcard:hover{border-color:var(--border2);box-shadow:0 0 24px var(--glow2);}
+.lcard h4{font-size:13px;font-weight:700;color:var(--teal);margin-bottom:8px;padding-left:4px;}
+.lcard p{font-size:13px;color:var(--muted);line-height:1.7;}
+.chal-list{list-style:none;}
+.chal-list li{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:13px 0;border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--muted);line-height:1.6;
+}
+.chal-list li:last-child{border:none;}
+.chal-list li strong{color:var(--text);}
+.cn{
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(0,229,176,0.08);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--teal);flex-shrink:0;
+}
+
+.fut-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px;}
+.fcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:28px 24px;text-align:center;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.fcard::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.fcard:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 16px 48px rgba(0,0,0,0.3),0 0 40px var(--glow2);}
+.fcard:hover::after{opacity:1;}
+.fcard-icon{font-size:32px;display:block;margin-bottom:14px;}
+.fcard h4{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.fcard p{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── FOOTER ── */
+footer{
+  background:#020508;padding:44px 7%;
+  border-top:1px solid var(--border);
+  text-align:center;position:relative;z-index:1;
+}
+.footer-links{display:flex;justify-content:center;gap:28px;margin-bottom:20px;flex-wrap:wrap;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+.footer-links a:hover{color:var(--teal);}
+footer p{font-size:13px;color:var(--muted);}
+footer strong{color:var(--teal);}
+.footer-mono{font-family:var(--mono);font-size:11px;color:rgba(107,144,128,0.5);margin-top:8px;}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .about-grid,.conc-grid{grid-template-columns:1fr;}
+  .hero-float{display:none;}
+  .fut-row{grid-template-columns:1fr 1fr;}
+  .proj-grid{grid-template-columns:1fr;}
+  .cmp2,.prow3{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  section{padding:64px 5%;}
+  #home{padding:100px 5% 60px;}
+  .fut-row{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+  .hero-cards{flex-direction:column;}
+  .hcard{min-width:100%;}
+  .sk-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ANIMATED CANVAS BG -->
+<canvas id="canvas-bg"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">BQV.dev</a>
+  <ul class="nav-links">
+    <li><a href="#gioi-thieu">Giới thiệu</a></li>
+    <li><a href="#du-an">Dự án</a></li>
+    <li><a href="#tong-ket">Tổng kết</a></li>
+  </ul>
+  <div class="nav-dot"></div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="hero-chip"><span class="chip-dot"></span>Portfolio Kỹ Thuật Số · 2025–2026</div>
+
+  <div class="hero-name">Bùi Quốc<br>Việt</div>
+
+  <div class="hero-role">Sinh viên Mạng Máy Tính và Truyền Thông Dữ Liệu · ĐHQG Hà Nội</div>
+
+  <div class="hero-cards">
+    <div class="hcard"><span class="hcard-label">Mã sinh viên</span><span class="hcard-val">25023544</span></div>
+    <div class="hcard"><span class="hcard-label">Môn học</span><span class="hcard-val">Nhập môn CNTS & ƯDTTNT</span></div>
+    <div class="hcard"><span class="hcard-label">Học kỳ</span><span class="hcard-val">HK II — 2025–2026</span></div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="#du-an" class="btn-main">Xem dự án →</a>
+    <a href="#gioi-thieu" class="btn-ghost">Giới thiệu bản thân</a>
+  </div>
+
+  <div class="hero-float">
+    <canvas id="net-canvas"></canvas>
+  </div>
+</section>
+
+<!-- ══ GIỚI THIỆU ══ -->
+<section id="gioi-thieu">
+  <div class="s-chip">I. Giới thiệu cá nhân</div>
+  <h2 class="s-title">Tôi là ai?</h2>
+
+  <div class="about-grid">
+    <div class="fade-up">
+      <p>Xin chào! Tôi là <strong style="color:var(--teal)">Bùi Quốc Việt</strong>, sinh viên năm nhất ngành Mạng Máy Tính và Truyền Thông Dữ Liệu tại Đại học Quốc gia Hà Nội. Tôi có niềm đam mê với hạ tầng mạng, bảo mật thông tin và cách các hệ thống truyền thông dữ liệu kết nối thế giới hiện đại.</p>
+      <p>Sinh ra và lớn lên ở Thanh Hóa, tôi luôn bị cuốn hút bởi cách các hệ thống mạng vận hành và tiềm năng vô hạn của truyền thông dữ liệu trong kỷ nguyên số. Tôi tin rằng nền tảng kỹ thuật số vững chắc là chìa khóa để mở ra những cơ hội nghề nghiệp trong tương lai.</p>
+      <div class="terminal-quote">Portfolio này không chỉ là bài tập — đây là hành trình ghi lại quá trình tôi trưởng thành trong tư duy số và kỹ năng ứng dụng công nghệ.</div>
+      <div class="s-chip" style="margin-top:28px;margin-bottom:12px">Mục tiêu học tập</div>
+      <ul class="goals">
+        <li><span class="g-chk">✓</span>Nắm vững các khái niệm cơ bản về công nghệ thông tin và hệ thống máy tính</li>
+        <li><span class="g-chk">✓</span>Phát triển kỹ năng tìm kiếm, đánh giá và sử dụng thông tin học thuật hiệu quả</li>
+        <li><span class="g-chk">✓</span>Ứng dụng AI có trách nhiệm trong học tập và nghiên cứu khoa học</li>
+        <li><span class="g-chk">✓</span>Xây dựng thói quen tư duy phản biện và sáng tạo trong môi trường số</li>
+        <li><span class="g-chk">✓</span>Hợp tác hiệu quả trong nhóm thông qua công cụ trực tuyến hiện đại</li>
+      </ul>
+    </div>
+
+    <div class="fade-up">
+      <div class="s-chip" style="margin-bottom:14px">Kỹ năng đã học</div>
+      <div class="sk-grid">
+        <div class="sk"><span class="sk-icon">🗂️</span><div class="sk-name">Quản lý tệp & thư mục</div><div class="sk-lv">// Thành thạo</div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div></div>
+        <div class="sk"><span class="sk-icon">🔍</span><div class="sk-name">Tìm kiếm học thuật</div><div class="sk-lv">// Tốt</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+        <div class="sk"><span class="sk-icon">🤖</span><div class="sk-name">Viết Prompt AI</div><div class="sk-lv">// Tốt</div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div>
+        <div class="sk"><span class="sk-icon">👥</span><div class="sk-name">Hợp tác trực tuyến</div><div class="sk-lv">// Khá</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div></div>
+        <div class="sk"><span class="sk-icon">🎨</span><div class="sk-name">Sáng tạo nội dung AI</div><div class="sk-lv">// Tốt</div><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+        <div class="sk"><span class="sk-icon">⚖️</span><div class="sk-name">AI có trách nhiệm</div><div class="sk-lv">// Hiểu sâu</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div></div>
+      </div>
+      <div class="info-panel">
+        <h4>// Mục tiêu của Portfolio này</h4>
+        <ul class="ip-list">
+          <li>Thể hiện tổng hợp các kỹ năng số đã học trong học kỳ</li>
+          <li>Lưu trữ sản phẩm cá nhân để dễ dàng truy cập và chia sẻ</li>
+          <li>Xây dựng nền tảng hồ sơ chuyên nghiệp cho tương lai</li>
+          <li>Phản ánh quá trình phát triển tư duy và học tập của bản thân</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DỰ ÁN ══ -->
+<section id="du-an">
+  <div class="s-chip">II. Trang Dự Án</div>
+  <h2 class="s-title">6 Bài Tập Hoàn Thành</h2>
+  <p class="s-desc">Tổng hợp toàn bộ các bài tập từ Bài 1 đến Bài 6, mỗi bài trình bày rõ mục tiêu, quy trình thực hiện và sản phẩm cuối cùng.</p>
+
+  <div class="proj-grid">
+
+    <!-- BÀI 1 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">01</div>
+        <span class="ptag">Bài tập 1 · Mục 1.4</span>
+        <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
+        <p>Xây dựng hệ thống tổ chức tệp tin khoa học, áp dụng quy tắc đặt tên nhất quán và cấu trúc thư mục logic.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Hệ thống thư mục 4 cấp với quy tắc <code class="c">YYYYMMDD_MaMon_TenFile</code>, tối ưu cho 6+ môn học. Mô tả rõ lý do thiết kế từng cấp.</div></div>
+        <div class="dbox">
+          <h4>// Cấu trúc thư mục đã thiết lập</h4>
+          <pre style="background:rgba(0,0,0,0.3);padding:14px;border-radius:8px;font-family:var(--mono);font-size:11px;line-height:2;overflow-x:auto;border:1px solid var(--border);color:var(--muted)">📦 BuiQuocViet_25023544/
+├── 📂 01_HocKy2_2026/
+│   ├── 📂 CNTS_NhapMon/
+│   │   ├── 📂 BaiTap/
+│   │   │   └── 20260301_CNTS_BaiTap1.docx
+│   │   ├── 📂 TaiLieu/
+│   │   └── 📂 SanPham/
+│   └── 📂 MangMayTinh/
+├── 📂 02_CaNhan/
+└── 📂 03_ChiaSe/</pre>
+          <p style="font-size:11px;color:var(--muted);margin-top:10px;font-family:var(--mono)">// Quy tắc: không dấu, viết liền gạch nối, ngày tháng đứng đầu → tự sắp xếp theo thời gian.</p>
+        </div>
+        <div class="tools"><span class="tool">Windows Explorer</span><span class="tool">Naming Convention</span><span class="tool">Folder Structure</span></div>
+      </div>
+    </div>
+
+    <!-- BÀI 2 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">02</div>
+        <span class="ptag">Bài tập 2 · Mục 2.4</span>
+        <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+        <p>Áp dụng toán tử tìm kiếm nâng cao trên Google Scholar và đánh giá độ tin cậy nguồn thông tin theo tiêu chí CRAAP.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo sử dụng 5+ toán tử nâng cao, đánh giá chi tiết 3 nguồn tài liệu theo CRAAP Test kèm ảnh chụp màn hình minh họa.</div></div>
+        <div class="dbox">
+          <h4>// Toán tử tìm kiếm đã áp dụng</h4>
+          <table class="tbl">
+            <tr><th>Toán tử</th><th>Cú pháp</th><th>Mục đích</th></tr>
+            <tr><td>Trích dẫn</td><td><code class="c">"computer network"</code></td><td>Cụm từ chính xác</td></tr>
+            <tr><td>Site:</td><td><code class="c">site:edu</code></td><td>Lọc nguồn học thuật</td></tr>
+            <tr><td>Filetype:</td><td><code class="c">filetype:pdf</code></td><td>Tìm tài liệu PDF</td></tr>
+            <tr><td>Loại trừ</td><td><code class="c">AI -gaming</code></td><td>Loại chủ đề không liên quan</td></tr>
+            <tr><td>Thời gian</td><td><code class="c">after:2023</code></td><td>Nguồn mới nhất</td></tr>
+          </table>
+          <h4 style="margin-top:14px">// Bảng đánh giá CRAAP Test</h4>
+          <table class="tbl" style="margin-top:8px">
+            <tr><th>Tiêu chí</th><th>IEEE</th><th>Wikipedia</th><th>Blog</th></tr>
+            <tr><td>Currency</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-bad">Kém</span></td></tr>
+            <tr><td>Relevance</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">TB</span></td></tr>
+            <tr><td>Authority</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-bad">Kém</span></td></tr>
+            <tr><td>Accuracy</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-mid">Khá</span></td></tr>
+            <tr><td>Purpose</td><td><span class="bdg b-ok">Học thuật</span></td><td><span class="bdg b-ok">Tham khảo</span></td><td><span class="bdg b-bad">Quảng cáo</span></td></tr>
+          </table>
+        </div>
+        <div class="tools"><span class="tool">Google Scholar</span><span class="tool">CRAAP Test</span><span class="tool">Boolean Operators</span><span class="tool">IEEE Xplore</span></div>
+      </div>
+    </div>
+
+    <!-- BÀI 3 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">03</div>
+        <span class="ptag">Bài tập 2 · Mục 3.4</span>
+        <h3>Viết Prompt hiệu quả cho tác vụ học tập</h3>
+        <p>So sánh Prompt ban đầu và Prompt cải tiến, phân tích sự khác biệt đầu ra AI và rút ra nguyên tắc Prompt Engineering.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo so sánh 3 cặp Prompt với phân tích cơ chế hoạt động AI, kèm bộ 5 nguyên tắc Prompt Engineering cá nhân.</div></div>
+        <div class="dbox">
+          <h4>// So sánh Prompt: Trước & Sau</h4>
+          <div class="cmp2">
+            <div class="cbox"><div class="cbox-label cl-bad">❌ Prompt ban đầu</div><p>"Giải thích machine learning cho tôi"</p><div class="cres bad">Quá chung, thiếu ví dụ, không đúng trình độ</div></div>
+            <div class="cbox"><div class="cbox-label cl-ok">✅ Prompt cải tiến</div><p>"Bạn là giảng viên. Giải thích ML cho SV năm 1 CNTT, dùng ví dụ đời thường, format: định nghĩa → ví dụ → ứng dụng. 300 từ."</p><div class="cres ok">Rõ ràng, cấu trúc, phù hợp trình độ</div></div>
+          </div>
+          <h4 style="margin-top:14px">// 5 Nguyên tắc Prompt Engineering</h4>
+          <div style="margin-top:8px">
+            <div class="principle"><strong>① Persona</strong> — Gán vai trò cụ thể cho AI</div>
+            <div class="principle"><strong>② Audience</strong> — Xác định đối tượng và trình độ đích</div>
+            <div class="principle"><strong>③ Format</strong> — Chỉ định cấu trúc đầu ra rõ ràng</div>
+            <div class="principle"><strong>④ Constraints</strong> — Giới hạn độ dài, phong cách ngôn ngữ</div>
+            <div class="principle"><strong>⑤ Context</strong> — Thêm ngữ cảnh và ví dụ minh họa</div>
+          </div>
+        </div>
+        <div class="tools"><span class="tool">ChatGPT-4o</span><span class="tool">Claude Sonnet</span><span class="tool">Prompt Engineering</span></div>
+      </div>
+    </div>
+
+    <!-- BÀI 4 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">04</div>
+        <span class="ptag">Bài tập 3 · Mục 4.4</span>
+        <h3>Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
+        <p>Quản lý dự án nhóm bằng công cụ số, phân công nhiệm vụ, theo dõi tiến độ và hợp tác tài liệu thời gian thực.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Dự án nhóm 4 người hoàn thành qua Notion + Google Docs + Discord. Có ảnh chụp bảng Kanban và lịch sử thay đổi tài liệu.</div></div>
+        <div class="dbox">
+          <h4>// Bộ công cụ hợp tác nhóm</h4>
+          <div class="prow3">
+            <div class="pbox"><span class="pbox-icon">📝</span><div class="pbox-name">Notion</div><div class="pbox-desc">Kanban board, task, deadline</div></div>
+            <div class="pbox"><span class="pbox-icon">📄</span><div class="pbox-name">Google Docs</div><div class="pbox-desc">Cộng tác, comment, version</div></div>
+            <div class="pbox"><span class="pbox-icon">💬</span><div class="pbox-name">Discord</div><div class="pbox-desc">Họp online, chia sẻ tệp</div></div>
+          </div>
+          <h4 style="margin-top:14px">// Phân công & kết quả nhóm</h4>
+          <table class="tbl" style="margin-top:8px">
+            <tr><th>Thành viên</th><th>Nhiệm vụ</th><th>Status</th></tr>
+            <tr><td><strong style="color:var(--teal)">Bùi Quốc Việt (Trưởng)</strong></td><td>Tổng hợp, báo cáo</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
+            <tr><td>Trần Thị B</td><td>Nghiên cứu tài liệu</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
+            <tr><td>Lê Văn C</td><td>Thiết kế slide</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
+            <tr><td>Phạm Thị D</td><td>Thuyết trình</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
+          </table>
+        </div>
+        <div class="tools"><span class="tool">Notion</span><span class="tool">Google Docs</span><span class="tool">Discord</span><span class="tool">Kanban</span></div>
+      </div>
+    </div>
+
+    <!-- BÀI 5 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">05</div>
+        <span class="ptag">Bài tập 2 · Mục 5.4</span>
+        <h3>Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+        <p>Tạo sản phẩm nội dung số chất lượng cao (bài viết + hình ảnh) với AI tạo sinh, mô tả chi tiết quy trình sản xuất.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bài blog 800 từ về "Tác động AI với giáo dục" + 3 infographic tạo bằng Midjourney. Chuyên nghiệp, sáng tạo, workflow đầy đủ.</div></div>
+        <div class="dbox">
+          <h4>// Quy trình sáng tạo nội dung với AI</h4>
+          <ul class="step-list">
+            <li><span><strong style="color:var(--text)">Lên ý tưởng:</strong> Xác định chủ đề, đối tượng đọc, tone giọng văn và mục tiêu nội dung</span></li>
+            <li><span><strong style="color:var(--text)">Tạo outline (ChatGPT):</strong> Prompt chi tiết để tạo cấu trúc bài 800 từ theo format chuẩn blog</span></li>
+            <li><span><strong style="color:var(--text)">Viết nháp (Claude):</strong> Mở rộng từng phần, giọng văn tự nhiên, bổ sung số liệu thực tế</span></li>
+            <li><span><strong style="color:var(--text)">Tạo hình ảnh (Midjourney):</strong> Prompt chi tiết với style, lighting, composition cho 3 infographic</span></li>
+            <li><span><strong style="color:var(--text)">Biên tập & hoàn thiện:</strong> Kiểm tra thông tin, chỉnh giọng văn, tối ưu bố cục</span></li>
+          </ul>
+        </div>
+        <div class="tools"><span class="tool">ChatGPT-4o</span><span class="tool">Claude Sonnet</span><span class="tool">Midjourney v6</span><span class="tool">Canva</span></div>
+      </div>
+    </div>
+
+    <!-- BÀI 6 -->
+    <div class="pcard fade-up">
+      <div class="ptop">
+        <div class="pnum">06</div>
+        <span class="ptag">Bài tập 4 · Mục 6.4</span>
+        <h3>Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
+        <p>Nghiên cứu đạo đức AI, xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm dựa trên khung quốc tế.</p>
+      </div>
+      <div class="pbody">
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bộ 7 nguyên tắc cá nhân sử dụng AI có trách nhiệm, kèm phân tích sâu các vấn đề đạo đức AI và đề xuất giải pháp thực tiễn.</div></div>
+        <div class="dbox">
+          <h4>// Bộ nguyên tắc AI có trách nhiệm</h4>
+          <div style="margin-top:8px">
+            <div class="principle"><strong>① Minh bạch:</strong> Luôn công khai khi sử dụng AI trong sản phẩm học tập</div>
+            <div class="principle"><strong>② Kiểm chứng:</strong> Không tin tưởng tuyệt đối — luôn fact-check từ nguồn đáng tin cậy</div>
+            <div class="principle"><strong>③ Liêm chính học thuật:</strong> AI hỗ trợ tư duy, không thay thế tư duy của bản thân</div>
+            <div class="principle"><strong>④ Bảo vệ quyền riêng tư:</strong> Không chia sẻ dữ liệu cá nhân nhạy cảm với AI</div>
+            <div class="principle"><strong>⑤ Nhận biết bias:</strong> Đọc kết quả AI với tư duy phản biện, AI có thiên kiến</div>
+            <div class="principle"><strong>⑥ Sử dụng có mục đích:</strong> Chỉ dùng AI khi thực sự cần, tránh phụ thuộc quá mức</div>
+            <div class="principle"><strong>⑦ Đóng góp tích cực:</strong> Chia sẻ kinh nghiệm sử dụng AI có đạo đức với cộng đồng</div>
+          </div>
+        </div>
+        <div class="tools"><span class="tool">UNESCO AI Ethics</span><span class="tool">EU AI Act</span><span class="tool">Critical Thinking</span><span class="tool">Digital Citizenship</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TỔNG KẾT ══ -->
+<section id="tong-ket">
+  <div class="s-chip">III. Trang Tổng kết</div>
+  <h2 class="s-title">Hành trình & Bài học</h2>
+  <p class="s-desc">Nhìn lại toàn bộ quá trình thực hiện dự án Portfolio — những điều tâm đắc, thách thức đã vượt qua và định hướng tương lai.</p>
+
+  <div class="conc-grid">
+    <div>
+      <div class="s-chip" style="margin-bottom:18px">Kiến thức & Kỹ năng quan trọng nhất</div>
+      <div class="lcard">
+        <h4>🧠 Tư duy số hóa toàn diện</h4>
+        <p>Môn học giúp tôi nhận ra rằng "tư duy số" không chỉ là biết dùng máy tính — mà là cách tiếp cận có hệ thống với thông tin, công cụ và quy trình làm việc. Kỹ năng tổ chức thư mục hay đánh giá nguồn tin đều phản ánh một tư duy logic sâu xa hơn.</p>
+      </div>
+      <div class="lcard">
+        <h4>🤝 AI là đối tác, không phải người thay thế</h4>
+        <p>Bài học từ Prompt Engineering và AI có trách nhiệm: AI mạnh nhất khi được dẫn dắt bởi tư duy con người. Người dùng AI giỏi biết đặt câu hỏi đúng, kiểm tra kết quả và kết hợp sức mạnh AI với hiểu biết cá nhân.</p>
+      </div>
+      <div class="lcard">
+        <h4>🌐 Hợp tác số cần kỹ thuật lẫn kỹ năng mềm</h4>
+        <p>Dù có công cụ tốt đến đâu, dự án nhóm chỉ thành công khi mọi thành viên cam kết và giao tiếp rõ ràng. Công nghệ chỉ là phương tiện — con người mới là trung tâm.</p>
+      </div>
+    </div>
+    <div>
+      <div class="s-chip" style="margin-bottom:18px">Thách thức đã vượt qua</div>
+      <ul class="chal-list">
+        <li><span class="cn">1</span><span><strong>Thiết lập thư mục hợp lý:</strong> Ban đầu gặp khó khăn — vượt qua bằng cách nghiên cứu best practice và thử nghiệm nhiều mô hình trước khi chốt phương án.</span></li>
+        <li><span class="cn">2</span><span><strong>Đánh giá nguồn thông tin:</strong> Phân biệt nguồn đáng tin trên Internet — học và áp dụng CRAAP Test để có công cụ đánh giá có hệ thống.</span></li>
+        <li><span class="cn">3</span><span><strong>Viết Prompt hiệu quả:</strong> Những Prompt đầu tiên cho kết quả kém — qua thử nghiệm có hệ thống và đọc tài liệu đã cải thiện đáng kể.</span></li>
+        <li><span class="cn">4</span><span><strong>Ranh giới đạo đức AI:</strong> Ranh giới giữa "hỗ trợ" và "phụ thuộc quá mức" không rõ ràng — đã xây dựng bộ nguyên tắc cá nhân dựa trên framework quốc tế.</span></li>
+        <li><span class="cn">5</span><span><strong>Quản lý thời gian:</strong> Cân bằng 6 bài tập với các môn khác — áp dụng Kanban board cá nhân để quản lý chính dự án này.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fut-row">
+    <div class="fcard">
+      <span class="fcard-icon">🎓</span>
+      <h4>Áp dụng vào học tập</h4>
+      <p>Áp dụng kỹ năng tìm kiếm học thuật và đánh giá nguồn vào tất cả môn học, đặc biệt các môn nghiên cứu và viết báo cáo khoa học.</p>
+    </div>
+    <div class="fcard">
+      <span class="fcard-icon">💼</span>
+      <h4>Phát triển nghề nghiệp</h4>
+      <p>Tiếp tục phát triển Portfolio như một hồ sơ chuyên nghiệp, bổ sung dự án thực tế về mạng và bảo mật, hướng đến thực tập năm 3.</p>
+    </div>
+    <div class="fcard">
+      <span class="fcard-icon">🌱</span>
+      <h4>Sứ mệnh dài hạn</h4>
+      <p>Trở thành chuyên gia mạng có tư duy số vững chắc — ứng dụng AI có trách nhiệm và đóng góp tích cực cho cộng đồng công nghệ Việt Nam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#gioi-thieu">Giới thiệu</a>
+    <a href="#du-an">Dự án</a>
+    <a href="#tong-ket">Tổng kết</a>
+  </div>
+  <p><strong>Bùi Quốc Việt</strong> · Mạng Máy Tính và Truyền Thông Dữ Liệu · ĐHQG Hà Nội</p>
+  <p style="margin-top:6px">Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo · Học kỳ II, 2025–2026</p>
+  <p class="footer-mono">// MSSV: 25023544 · Built with passion from Thanh Hóa</p>
+</footer>
+
+<script>
+/* ── CANVAS PARTICLE NETWORK ── */
+const canvas = document.getElementById('canvas-bg');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [], mouse = {x:null,y:null};
+const NODE_COUNT = 55;
+const MAX_DIST = 160;
+const COLOR = '0,229,176';
+
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Node {
+  constructor(){
+    this.x = Math.random()*W;
+    this.y = Math.random()*H;
+    this.vx = (Math.random()-0.5)*0.4;
+    this.vy = (Math.random()-0.5)*0.4;
+    this.r = Math.random()*1.8+0.6;
+  }
+  update(){
+    this.x += this.vx; this.y += this.vy;
+    if(this.x<0||this.x>W) this.vx*=-1;
+    if(this.y<0||this.y>H) this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${COLOR},0.55)`;
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<NODE_COUNT;i++) nodes.push(new Node());
+
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null;});
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  for(let i=0;i<nodes.length;i++){
+    nodes[i].update();
+    nodes[i].draw();
+    // connect to mouse
+    if(mouse.x!==null){
+      let dx=nodes[i].x-mouse.x, dy=nodes[i].y-mouse.y;
+      let d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MAX_DIST+40){
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(mouse.x,mouse.y);
+        ctx.strokeStyle=`rgba(${COLOR},${(1-(d/(MAX_DIST+40)))*0.35})`;
+        ctx.lineWidth=0.8;
+        ctx.stroke();
+      }
+    }
+    for(let j=i+1;j<nodes.length;j++){
+      let dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+      let d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MAX_DIST){
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.strokeStyle=`rgba(${COLOR},${(1-d/MAX_DIST)*0.14})`;
+        ctx.lineWidth=0.6;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* ── FADE UP ── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+/* ── SKILL BARS ── */
+const sobs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sk-fill').forEach(b=>{
+        const w=b.style.width; b.style.width='0';
+        setTimeout(()=>{b.style.width=w;},120);
+      });
+      sobs.unobserve(e.target);
+    }
+  });
+},{threshold:0.2});
+const sg=document.querySelector('.sk-grid');
+if(sg) sobs.observe(sg);
+
+/* ── NAV ACTIVE ── */
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id;});
+  links.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+
+/* ── HERO NETWORK TOPOLOGY ── */
+(function(){
+  const cv = document.getElementById('net-canvas');
+  if(!cv) return;
+  const cx = cv.getContext('2d');
+  let W, H;
+
+  function resize(){
+    const rect = cv.parentElement.getBoundingClientRect();
+    W = cv.width  = rect.width  * devicePixelRatio;
+    H = cv.height = rect.height * devicePixelRatio;
+    cx.scale(devicePixelRatio, devicePixelRatio);
+    W = rect.width; H = rect.height;
+  }
+  resize();
+  window.addEventListener('resize', ()=>{ cx.setTransform(1,0,0,1,0,0); resize(); });
+
+  /* node types: 0=router, 1=server, 2=endpoint */
+  const DEFS = [
+    {x:0.50,y:0.18,type:0,size:9},
+    {x:0.20,y:0.38,type:1,size:7},
+    {x:0.80,y:0.38,type:1,size:7},
+    {x:0.50,y:0.50,type:0,size:11}, // central hub
+    {x:0.15,y:0.65,type:2,size:5},
+    {x:0.38,y:0.72,type:2,size:5},
+    {x:0.62,y:0.72,type:2,size:5},
+    {x:0.85,y:0.65,type:2,size:5},
+    {x:0.30,y:0.90,type:2,size:4},
+    {x:0.70,y:0.90,type:2,size:4},
+  ];
+
+  const EDGES = [
+    [0,3],[1,3],[2,3],[3,4],[3,5],[3,6],[3,7],
+    [0,1],[0,2],[1,4],[1,5],[2,6],[2,7],[5,8],[6,9],[4,8],[7,9]
+  ];
+
+  /* build nodes with drift */
+  const nodes = DEFS.map(d => ({
+    ...d,
+    bx: d.x * W, by: d.y * H,
+    ox: 0, oy: 0,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.4 + Math.random() * 0.4,
+    amp:   4  + Math.random() * 6,
+  }));
+
+  /* packet animation state */
+  const packets = [];
+  function spawnPacket(){
+    const ei = Math.floor(Math.random() * EDGES.length);
+    const [a, b] = EDGES[ei];
+    const rev = Math.random() > 0.5;
+    packets.push({ from: rev?b:a, to: rev?a:b, t: 0, speed: 0.004 + Math.random()*0.003 });
+  }
+  setInterval(spawnPacket, 600);
+
+  /* ping ripple */
+  const ripples = [];
+  function spawnRipple(ni){
+    ripples.push({ ni, r: 0, alpha: 0.8 });
+  }
+  setInterval(()=>{ spawnRipple(Math.floor(Math.random()*nodes.length)); }, 1400);
+
+  let t = 0;
+  function frame(){
+    t += 0.012;
+    cx.clearRect(0, 0, W, H);
+
+    /* update node positions */
+    nodes.forEach(n => {
+      n.bx = n.x * W;
+      n.by = n.y * H;
+      n.cx = n.bx + Math.sin(t * n.speed + n.phase)           * n.amp;
+      n.cy = n.by + Math.cos(t * n.speed * 0.7 + n.phase+1.2) * n.amp;
+    });
+
+    /* draw edges */
+    EDGES.forEach(([a,b]) => {
+      const na = nodes[a], nb = nodes[b];
+      const grad = cx.createLinearGradient(na.cx, na.cy, nb.cx, nb.cy);
+      grad.addColorStop(0,   'rgba(0,229,176,0.18)');
+      grad.addColorStop(0.5, 'rgba(0,229,176,0.32)');
+      grad.addColorStop(1,   'rgba(0,229,176,0.18)');
+      cx.beginPath();
+      cx.moveTo(na.cx, na.cy);
+      cx.lineTo(nb.cx, nb.cy);
+      cx.strokeStyle = grad;
+      cx.lineWidth = 1.2;
+      cx.stroke();
+    });
+
+    /* draw packets */
+    for(let i = packets.length-1; i >= 0; i--){
+      const p = packets[i];
+      p.t += p.speed;
+      if(p.t >= 1){ packets.splice(i,1); continue; }
+      const na = nodes[p.from], nb = nodes[p.to];
+      const px = na.cx + (nb.cx - na.cx) * p.t;
+      const py = na.cy + (nb.cy - na.cy) * p.t;
+      /* glow trail */
+      const trail = cx.createRadialGradient(px,py,0, px,py,10);
+      trail.addColorStop(0, 'rgba(0,229,176,0.7)');
+      trail.addColorStop(1, 'rgba(0,229,176,0)');
+      cx.beginPath();
+      cx.arc(px, py, 10, 0, Math.PI*2);
+      cx.fillStyle = trail;
+      cx.fill();
+      /* core dot */
+      cx.beginPath();
+      cx.arc(px, py, 2.5, 0, Math.PI*2);
+      cx.fillStyle = '#00e5b0';
+      cx.fill();
+    }
+
+    /* draw ripples */
+    for(let i = ripples.length-1; i >= 0; i--){
+      const rp = ripples[i];
+      const n  = nodes[rp.ni];
+      rp.r    += 1.5;
+      rp.alpha -= 0.018;
+      if(rp.alpha <= 0){ ripples.splice(i,1); continue; }
+      cx.beginPath();
+      cx.arc(n.cx, n.cy, rp.r, 0, Math.PI*2);
+      cx.strokeStyle = `rgba(0,229,176,${rp.alpha})`;
+      cx.lineWidth = 1;
+      cx.stroke();
+    }
+
+    /* draw nodes */
+    nodes.forEach((n, i) => {
+      const isHub = n.size >= 10;
+      const r = n.size;
+
+      /* outer glow */
+      const glow = cx.createRadialGradient(n.cx,n.cy,0, n.cx,n.cy, r*3.5);
+      glow.addColorStop(0, isHub ? 'rgba(0,229,176,0.22)' : 'rgba(0,229,176,0.12)');
+      glow.addColorStop(1, 'rgba(0,229,176,0)');
+      cx.beginPath();
+      cx.arc(n.cx, n.cy, r*3.5, 0, Math.PI*2);
+      cx.fillStyle = glow;
+      cx.fill();
+
+      /* ring */
+      cx.beginPath();
+      cx.arc(n.cx, n.cy, r+2, 0, Math.PI*2);
+      cx.strokeStyle = isHub ? 'rgba(0,229,176,0.6)' : 'rgba(0,229,176,0.3)';
+      cx.lineWidth = 1;
+      cx.stroke();
+
+      /* fill */
+      const fill = cx.createRadialGradient(n.cx-r*0.3, n.cy-r*0.3, 0, n.cx, n.cy, r);
+      fill.addColorStop(0, isHub ? '#00e5b0' : '#00c49a');
+      fill.addColorStop(1, isHub ? '#009e7a' : '#006e5a');
+      cx.beginPath();
+      cx.arc(n.cx, n.cy, r, 0, Math.PI*2);
+      cx.fillStyle = fill;
+      cx.fill();
+
+      /* icon inside hub */
+      if(isHub){
+        cx.fillStyle = '#03060a';
+        cx.font = 'bold 10px monospace';
+        cx.textAlign = 'center';
+        cx.textBaseline = 'middle';
+        cx.fillText('⬡', n.cx, n.cy);
+      }
+    });
+
+    /* subtle label for hub */
+    const hub = nodes[3];
+    cx.fillStyle = 'rgba(0,229,176,0.5)';
+    cx.font = '9px "JetBrains Mono", monospace';
+    cx.textAlign = 'center';
+    cx.fillText('CORE NODE', hub.cx, hub.cy + hub.size + 14);
+
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+</script>
+</body>
+</html>
