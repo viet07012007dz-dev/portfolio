@@ -337,7 +337,7 @@ code.c{background:rgba(0,229,176,0.08);color:var(--teal);padding:2px 7px;border-
 }
 .principle strong{color:var(--text);}
 
-.tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px; margin-bottom:14px;}
 .tool{
   background:rgba(255,255,255,0.03);border:1px solid var(--border);
   border-radius:6px;padding:3px 10px;
@@ -395,6 +395,83 @@ code.c{background:rgba(0,229,176,0.08);color:var(--teal);padding:2px 7px;border-
 .fcard h4{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;}
 .fcard p{font-size:12px;color:var(--muted);line-height:1.7;}
 
+/* ── CONTACT ── */
+.contact-section {
+  margin-top: 60px;
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--blue), var(--purple));
+}
+.contact-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  list-style: none;
+}
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 229, 176, 0.08);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--teal);
+  transition: all 0.3s;
+}
+.contact-item:hover .contact-icon {
+  background: var(--teal);
+  color: #03060a;
+  box-shadow: 0 0 20px rgba(0, 229, 176, 0.4);
+  transform: translateY(-5px);
+}
+.contact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.contact-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-val:hover {
+  color: var(--teal);
+}
+
 /* ── FOOTER ── */
 footer{
   background:#020508;padding:44px 7%;
@@ -408,17 +485,175 @@ footer p{font-size:13px;color:var(--muted);}
 footer strong{color:var(--teal);}
 .footer-mono{font-family:var(--mono);font-size:11px;color:rgba(107,144,128,0.5);margin-top:8px;}
 
-/* ── ANIMATIONS ── */
+/* ── ABOUT NEW GRID ── */
+.about-grid-new{display:grid;grid-template-columns:220px 1fr 1fr;gap:52px;align-items:start;}
+.about-text p{color:var(--muted);margin-bottom:18px;font-size:15px;line-height:1.9;}
+
+/* ── AVATAR ── */
+.avatar-col{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.avatar-wrap{position:relative;width:160px;height:160px;cursor:pointer;}
+.avatar-ring{
+  position:absolute;inset:-6px;border-radius:50%;
+  background:conic-gradient(var(--teal),var(--blue),var(--purple),var(--teal));
+  animation:spin 6s linear infinite;z-index:0;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.avatar-inner{
+  position:absolute;inset:3px;border-radius:50%;
+  background:var(--card2);z-index:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;transition:box-shadow 0.3s;
+}
+.avatar-wrap:hover .avatar-inner{box-shadow:0 0 30px var(--glow);}
+.avatar-placeholder{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;}
+.avatar-initials{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--teal);line-height:1;}
+.avatar-hint{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;letter-spacing:1px;}
+.avatar-upload-btn{
+  position:absolute;bottom:4px;right:4px;z-index:2;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--teal);color:#03060a;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:2px solid var(--bg);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.avatar-upload-btn:hover{transform:scale(1.15);box-shadow:0 0 12px rgba(0,229,176,0.5);}
+.avatar-info{text-align:center;}
+.av-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.av-sub{font-size:12px;color:var(--muted);margin-bottom:3px;}
+.av-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
+.av-badge{
+  background:rgba(0,229,176,0.07);border:1px solid var(--border);
+  border-radius:100px;padding:3px 10px;font-size:10px;color:var(--teal);
+  font-family:var(--mono);font-weight:600;
+}
+
+/* ── HOBBY SECTION ── */
+.hobby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.hobby-card{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:26px 22px;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.hobby-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--blue),var(--purple));
+  opacity:0;transition:opacity 0.3s;
+}
+.hobby-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 16px 40px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
+.hobby-card:hover::before{opacity:1;}
+.hobby-icon{font-size:34px;margin-bottom:12px;display:block;}
+.hobby-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.hobby-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.hobby-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.htag{
+  background:rgba(0,229,176,0.06);border:1px solid var(--border);
+  border-radius:100px;padding:2px 10px;
+  font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.5px;
+  transition:border-color 0.2s,color 0.2s;
+}
+.hobby-card:hover .htag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
+
+/* ── PROJECT CARDS (I.C) ── */
+.pj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.pj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:28px 28px 22px;
+  display:flex;flex-direction:column;gap:0;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.pj-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal) 50%,transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.pj-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px var(--glow2);}
+.pj-card:hover::after{opacity:1;}
+.pj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.pj-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);line-height:1.3;flex:1;}
+.pj-status{
+  flex-shrink:0;padding:4px 12px;border-radius:100px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.5px;
+  white-space:nowrap;margin-top:2px;
+}
+.pj-done{background:rgba(0,229,176,0.12);color:var(--teal);border:1px solid rgba(0,229,176,0.25);}
+.pj-wip{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.25);}
+.pj-plan{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.25);}
+.pj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;flex:1;}
+.pj-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
+.pj-tag{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+  border-radius:5px;padding:3px 10px;
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  transition:border-color 0.2s,color 0.2s;
+}
+.pj-card:hover .pj-tag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
+.pj-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--teal);
+  text-decoration:none;transition:gap 0.2s;width:fit-content;
+}
+.pj-link:hover{gap:10px;}
+
+/* Nút Minh Chứng Mới */
+.proof-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  border: 1px solid var(--border2);
+  padding: 8px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: auto; /* Đẩy nút xuống dưới cùng của card */
+  width: fit-content;
+}
+.proof-link:hover {
+  background: rgba(0, 229, 176, 0.1);
+  border-color: var(--teal);
+  box-shadow: 0 0 15px var(--glow2);
+}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px 20px;text-align:center;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 12px 36px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
+.stat-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px;}
+.stat-label{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+/* ── RESPONSIVE UPDATE ── */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
 
 /* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .about-grid-new{grid-template-columns:1fr 1fr;gap:36px;}
+  .avatar-col{grid-column:1/-1;flex-direction:row;justify-content:center;gap:32px;align-items:center;}
+  .avatar-info{text-align:left;}
+}
 @media(max-width:960px){
   .about-grid,.conc-grid{grid-template-columns:1fr;}
+  .about-grid-new{grid-template-columns:1fr;}
+  .avatar-col{flex-direction:column;align-items:center;}
+  .avatar-info{text-align:center;}
   .hero-float{display:none;}
   .fut-row{grid-template-columns:1fr 1fr;}
   .proj-grid{grid-template-columns:1fr;}
   .cmp2,.prow3{grid-template-columns:1fr;}
+  .hobby-grid{grid-template-columns:1fr 1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .pj-grid{grid-template-columns:1fr;}
+  .contact-list {flex-direction: column; align-items: center;}
 }
 @media(max-width:600px){
   section{padding:64px 5%;}
@@ -428,26 +663,27 @@ footer strong{color:var(--teal);}
   .hero-cards{flex-direction:column;}
   .hcard{min-width:100%;}
   .sk-grid{grid-template-columns:1fr;}
+  .hobby-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- ANIMATED CANVAS BG -->
 <canvas id="canvas-bg"></canvas>
 
-<!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">BQV.dev</a>
   <ul class="nav-links">
     <li><a href="#gioi-thieu">Giới thiệu</a></li>
-    <li><a href="#du-an">Dự án</a></li>
+    <li><a href="#so-thich">Sở thích</a></li>
+    <li><a href="#thanh-tuu">Dự án</a></li>
+    <li><a href="#du-an">Bài tập</a></li>
     <li><a href="#tong-ket">Tổng kết</a></li>
   </ul>
   <div class="nav-dot"></div>
 </nav>
 
-<!-- ══ HERO ══ -->
 <section id="home">
   <div class="hero-chip"><span class="chip-dot"></span>Portfolio Kỹ Thuật Số · 2025–2026</div>
 
@@ -471,12 +707,39 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
-<!-- ══ GIỚI THIỆU ══ -->
 <section id="gioi-thieu">
   <div class="s-chip">I. Giới thiệu cá nhân</div>
   <h2 class="s-title">Tôi là ai?</h2>
 
-  <div class="about-grid">
+  <div class="about-grid-new">
+    <div class="fade-up avatar-col">
+      <div class="avatar-wrap" id="avatarWrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar-inner" id="avatarInner">
+          <img id="avatarImg" src="anhnop.png" alt="" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;">
+          <div class="avatar-placeholder" id="avatarPlaceholder" style="display:none;">
+            <span class="avatar-initials">BQV</span>
+            <span class="avatar-hint">Nhấn để tải ảnh lên</span>
+          </div>
+        </div>
+        <label class="avatar-upload-btn" for="avatarInput" title="Tải ảnh lên">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </label>
+        <input type="file" id="avatarInput" accept="image/*" style="display:none;">
+      </div>
+      <div class="avatar-info">
+        <div class="av-name">Bùi Quốc Việt</div>
+        <div class="av-sub" style="font-family:var(--mono);font-size:11px;color:var(--teal);margin-bottom:4px;">// MSSV: 25023544</div>
+        <div class="av-sub">Mạng Máy Tính & Truyền Thông Dữ Liệu</div>
+        <div class="av-sub">ĐHQG Hà Nội · Thanh Hóa</div>
+        <div class="av-badges">
+          <span class="av-badge">🎓 Năm 1</span>
+          <span class="av-badge">🌐 Network</span>
+          <span class="av-badge">🤖 AI</span>
+        </div>
+      </div>
+    </div>
+
     <div class="fade-up">
       <p>Xin chào! Tôi là <strong style="color:var(--teal)">Bùi Quốc Việt</strong>, sinh viên năm nhất ngành Mạng Máy Tính và Truyền Thông Dữ Liệu tại Đại học Quốc gia Hà Nội. Tôi có niềm đam mê với hạ tầng mạng, bảo mật thông tin và cách các hệ thống truyền thông dữ liệu kết nối thế giới hiện đại.</p>
       <p>Sinh ra và lớn lên ở Thanh Hóa, tôi luôn bị cuốn hút bởi cách các hệ thống mạng vận hành và tiềm năng vô hạn của truyền thông dữ liệu trong kỷ nguyên số. Tôi tin rằng nền tảng kỹ thuật số vững chắc là chìa khóa để mở ra những cơ hội nghề nghiệp trong tương lai.</p>
@@ -514,7 +777,116 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
-<!-- ══ DỰ ÁN ══ -->
+<section id="so-thich" style="background:var(--bg);">
+  <div class="s-chip">I.B. Sở thích cá nhân</div>
+  <h2 class="s-title">Điều tôi yêu thích</h2>
+  <p class="s-desc">Ngoài việc học, đây là những đam mê giúp tôi cân bằng cuộc sống và khơi nguồn sáng tạo mỗi ngày.</p>
+  <div class="hobby-grid">
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">🌐</div>
+      <h3 class="hobby-title">Mạng & Bảo mật</h3>
+      <p class="hobby-desc">Tìm hiểu cách các giao thức mạng hoạt động, lab thực hành Cisco Packet Tracer, và theo dõi các xu hướng cybersecurity mới nhất trên thế giới.</p>
+      <div class="hobby-tags"><span class="htag">Packet Tracer</span><span class="htag">Wireshark</span><span class="htag">CTF</span></div>
+    </div>
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">⚽</div>
+      <h3 class="hobby-title">Bóng đá</h3>
+      <p class="hobby-desc">Đam mê bóng đá từ nhỏ — vừa là người hâm mộ cuồng nhiệt vừa thường xuyên đá phủi cùng bạn bè. Bóng đá dạy tôi tinh thần đồng đội và không bỏ cuộc.</p>
+      <div class="hobby-tags"><span class="htag">Premier League</span><span class="htag">Đá phủi</span><span class="htag">Teamwork</span></div>
+    </div>
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">🎮</div>
+      <h3 class="hobby-title">Gaming & Công nghệ</h3>
+      <p class="hobby-desc">Khám phá các tựa game chiến thuật và indie, đồng thời tìm hiểu về phần cứng máy tính, build PC và tối ưu hiệu năng hệ thống.</p>
+      <div class="hobby-tags"><span class="htag">Strategy</span><span class="htag">PC Building</span><span class="htag">Hardware</span></div>
+    </div>
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">📚</div>
+      <h3 class="hobby-title">Đọc sách & Học tập</h3>
+      <p class="hobby-desc">Yêu thích đọc sách về công nghệ, kỹ năng mềm và tâm lý học. Luôn tìm cách học những điều mới để mở rộng góc nhìn về thế giới xung quanh.</p>
+      <div class="hobby-tags"><span class="htag">Tech Books</span><span class="htag">Self-dev</span><span class="htag">Psychology</span></div>
+    </div>
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">🎵</div>
+      <h3 class="hobby-title">Âm nhạc</h3>
+      <p class="hobby-desc">Nghe nhạc là cách tôi lấy lại năng lượng sau những giờ học căng thẳng. Từ V-pop đến lo-fi, nhạc giúp tôi tập trung và sáng tạo hơn.</p>
+      <div class="hobby-tags"><span class="htag">V-pop</span><span class="htag">Lo-fi</span><span class="htag">EDM</span></div>
+    </div>
+    <div class="hobby-card fade-up">
+      <div class="hobby-icon">✈️</div>
+      <h3 class="hobby-title">Khám phá & Du lịch</h3>
+      <p class="hobby-desc">Thích khám phá những địa điểm mới, đặc biệt là các vùng đất ở miền Trung Việt Nam. Mỗi chuyến đi là một bài học về văn hóa và con người.</p>
+      <div class="hobby-tags"><span class="htag">Miền Trung</span><span class="htag">Backpacking</span><span class="htag">Culture</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="thanh-tuu" style="background:var(--bg2);">
+  <div class="s-chip">I.C. Dự án cá nhân</div>
+  <h2 class="s-title">Những điều tôi đã xây</h2>
+  <p class="s-desc">Mỗi dự án là một bài học, một thử nghiệm, một bước chân trên hành trình học hỏi.</p>
+
+  <div class="pj-grid">
+
+    <div class="pj-card fade-up">
+      <div class="pj-top">
+        <h3 class="pj-title">Phần mềm Đấu giá Trực tuyến</h3>
+        <span class="pj-status pj-done">Hoàn thành</span>
+      </div>
+      <p class="pj-desc">Hệ thống áp dụng kiến trúc phân tầng, tích hợp hệ quản trị cơ sở dữ liệu để tối ưu hóa hiệu năng.</p>
+      <div class="pj-tags">
+        <span class="pj-tag">Java</span>
+        <span class="pj-tag">OOP</span>
+        <span class="pj-tag">Git</span>
+      </div>
+      <a href="https://github.com/25023546-lab/BAITAPLON_NHOM7_CN15_CN1_K70I" target="_blank" class="pj-link">GitHub →</a>
+    </div>
+
+    <div class="pj-card fade-up">
+      <div class="pj-top">
+        <h3 class="pj-title">Hệ thống Quản lý Web Phòng trọ</h3>
+        <span class="pj-status pj-wip">Đang phát triển</span>
+      </div>
+      <p class="pj-desc">Nền tảng web giúp chủ trọ quản lý phòng, khách thuê, hợp đồng và thanh toán trực tuyến.</p>
+      <div class="pj-tags">
+        <span class="pj-tag">Web Development</span>
+        <span class="pj-tag">JavaScript & TypeScript</span>
+        <span class="pj-tag">CSS</span>
+      </div>
+      <a href="javascript:void(0)" onclick="alert('Dự án hiện tại đang hoàn thành nha')" class="pj-link">GitHub →</a>
+    </div>
+
+    <div class="pj-card fade-up">
+      <div class="pj-top">
+        <h3 class="pj-title">Portfolio Kỹ thuật số Cá nhân</h3>
+        <span class="pj-status pj-done">Hoàn thành</span>
+      </div>
+      <p class="pj-desc">Thiết kế và phát triển Portfolio cá nhân hoàn chỉnh bằng HTML/CSS/JS thuần, với hiệu ứng canvas động và giao diện tối hiện đại.</p>
+      <div class="pj-tags">
+        <span class="pj-tag">HTML</span>
+        <span class="pj-tag">CSS</span>
+        <span class="pj-tag">JavaScript</span>
+      </div>
+      <a href="https://github.com/viet07012007dz-dev/portfolio" target="_blank" class="pj-link">GitHub →</a>
+    </div>
+
+    <div class="pj-card fade-up">
+      <div class="pj-top">
+        <h3 class="pj-title">Nghiên cứu Bảo mật Mạng LAN</h3>
+        <span class="pj-status pj-plan">Lên kế hoạch</span>
+      </div>
+      <p class="pj-desc">Thực hành phân tích lưu lượng mạng nội bộ, phát hiện điểm yếu và đề xuất biện pháp bảo mật bằng Wireshark và Cisco Packet Tracer.</p>
+      <div class="pj-tags">
+        <span class="pj-tag">Wireshark</span>
+        <span class="pj-tag">Packet Tracer</span>
+        <span class="pj-tag">Network Security</span>
+      </div>
+      <a href="javascript:void(0)" onclick="alert('Dự án hiện tại đang hoàn thành nha')" class="pj-link">GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
 <section id="du-an">
   <div class="s-chip">II. Trang Dự Án</div>
   <h2 class="s-title">6 Bài Tập Hoàn Thành</h2>
@@ -522,181 +894,93 @@ footer strong{color:var(--teal);}
 
   <div class="proj-grid">
 
-    <!-- BÀI 1 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">01</div>
-        <span class="ptag">Bài tập 1 · Mục 1.4</span>
-        <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
-        <p>Xây dựng hệ thống tổ chức tệp tin khoa học, áp dụng quy tắc đặt tên nhất quán và cấu trúc thư mục logic.</p>
+        <span class="ptag">Bài tập 1</span>
+        <h3>Tổ chức dữ liệu học tập</h3>
+        <p>Thực hành thao tác tạo, đổi tên, sao chép, di chuyển và xóa tệp/thư mục trên hệ điều hành Windows.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Hệ thống thư mục 4 cấp với quy tắc <code class="c">YYYYMMDD_MaMon_TenFile</code>, tối ưu cho 6+ môn học. Mô tả rõ lý do thiết kế từng cấp.</div></div>
-        <div class="dbox">
-          <h4>// Cấu trúc thư mục đã thiết lập</h4>
-          <pre style="background:rgba(0,0,0,0.3);padding:14px;border-radius:8px;font-family:var(--mono);font-size:11px;line-height:2;overflow-x:auto;border:1px solid var(--border);color:var(--muted)">📦 BuiQuocViet_25023544/
-├── 📂 01_HocKy2_2026/
-│   ├── 📂 CNTS_NhapMon/
-│   │   ├── 📂 BaiTap/
-│   │   │   └── 20260301_CNTS_BaiTap1.docx
-│   │   ├── 📂 TaiLieu/
-│   │   └── 📂 SanPham/
-│   └── 📂 MangMayTinh/
-├── 📂 02_CaNhan/
-└── 📂 03_ChiaSe/</pre>
-          <p style="font-size:11px;color:var(--muted);margin-top:10px;font-family:var(--mono)">// Quy tắc: không dấu, viết liền gạch nối, ngày tháng đứng đầu → tự sắp xếp theo thời gian.</p>
-        </div>
-        <div class="tools"><span class="tool">Windows Explorer</span><span class="tool">Naming Convention</span><span class="tool">Folder Structure</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Thiết kế hệ thống phân loại và tổ chức dữ liệu theo mô hình phân cấp và quy tắc đặt tên chuẩn cho dữ liệu học tập, lập trình và hình ảnh cá nhân. Áp dụng chiến lược sao lưu 3-2-1.</div></div>
+        <div class="tools"><span class="tool">File Management</span><span class="tool">Naming Convention</span></div>
+        <a href="https://drive.google.com/drive/folders/1qVdXzKuDRik8mSuJimJFhtWfkOnIzGvi?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
-    <!-- BÀI 2 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">02</div>
-        <span class="ptag">Bài tập 2 · Mục 2.4</span>
+        <span class="ptag">Bài tập 2</span>
         <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
-        <p>Áp dụng toán tử tìm kiếm nâng cao trên Google Scholar và đánh giá độ tin cậy nguồn thông tin theo tiêu chí CRAAP.</p>
+        <p>Đánh giá vai trò của AI trong tổng hợp thông tin, tìm kiếm tài liệu học thuật về Python trong vật lý hạt nhân.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo sử dụng 5+ toán tử nâng cao, đánh giá chi tiết 3 nguồn tài liệu theo CRAAP Test kèm ảnh chụp màn hình minh họa.</div></div>
-        <div class="dbox">
-          <h4>// Toán tử tìm kiếm đã áp dụng</h4>
-          <table class="tbl">
-            <tr><th>Toán tử</th><th>Cú pháp</th><th>Mục đích</th></tr>
-            <tr><td>Trích dẫn</td><td><code class="c">"computer network"</code></td><td>Cụm từ chính xác</td></tr>
-            <tr><td>Site:</td><td><code class="c">site:edu</code></td><td>Lọc nguồn học thuật</td></tr>
-            <tr><td>Filetype:</td><td><code class="c">filetype:pdf</code></td><td>Tìm tài liệu PDF</td></tr>
-            <tr><td>Loại trừ</td><td><code class="c">AI -gaming</code></td><td>Loại chủ đề không liên quan</td></tr>
-            <tr><td>Thời gian</td><td><code class="c">after:2023</code></td><td>Nguồn mới nhất</td></tr>
-          </table>
-          <h4 style="margin-top:14px">// Bảng đánh giá CRAAP Test</h4>
-          <table class="tbl" style="margin-top:8px">
-            <tr><th>Tiêu chí</th><th>IEEE</th><th>Wikipedia</th><th>Blog</th></tr>
-            <tr><td>Currency</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-bad">Kém</span></td></tr>
-            <tr><td>Relevance</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">TB</span></td></tr>
-            <tr><td>Authority</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-bad">Kém</span></td></tr>
-            <tr><td>Accuracy</td><td><span class="bdg b-ok">Tốt</span></td><td><span class="bdg b-mid">Khá</span></td><td><span class="bdg b-mid">Khá</span></td></tr>
-            <tr><td>Purpose</td><td><span class="bdg b-ok">Học thuật</span></td><td><span class="bdg b-ok">Tham khảo</span></td><td><span class="bdg b-bad">Quảng cáo</span></td></tr>
-          </table>
-        </div>
-        <div class="tools"><span class="tool">Google Scholar</span><span class="tool">CRAAP Test</span><span class="tool">Boolean Operators</span><span class="tool">IEEE Xplore</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo phân tích thông tin học thuật bằng Google Gemini và danh mục 10 tài liệu tham khảo theo Harvard Style, đánh giá độ tin cậy của các nguồn.</div></div>
+        <div class="tools"><span class="tool">Google Gemini</span><span class="tool">Harvard Style</span></div>
+        <a href="https://drive.google.com/drive/folders/1HcEJ0Hdr873-ZhjNnNcXLdOD_1ZxUSFi?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
-    <!-- BÀI 3 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">03</div>
-        <span class="ptag">Bài tập 2 · Mục 3.4</span>
-        <h3>Viết Prompt hiệu quả cho tác vụ học tập</h3>
-        <p>So sánh Prompt ban đầu và Prompt cải tiến, phân tích sự khác biệt đầu ra AI và rút ra nguyên tắc Prompt Engineering.</p>
+        <span class="ptag">Bài tập 3</span>
+        <h3>Tối ưu hóa Prompt Engineering</h3>
+        <p>Lựa chọn và phân tích tác vụ học tập, xây dựng và thử nghiệm các phiên bản Prompt từ cơ bản đến nâng cao.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo so sánh 3 cặp Prompt với phân tích cơ chế hoạt động AI, kèm bộ 5 nguyên tắc Prompt Engineering cá nhân.</div></div>
-        <div class="dbox">
-          <h4>// So sánh Prompt: Trước & Sau</h4>
-          <div class="cmp2">
-            <div class="cbox"><div class="cbox-label cl-bad">❌ Prompt ban đầu</div><p>"Giải thích machine learning cho tôi"</p><div class="cres bad">Quá chung, thiếu ví dụ, không đúng trình độ</div></div>
-            <div class="cbox"><div class="cbox-label cl-ok">✅ Prompt cải tiến</div><p>"Bạn là giảng viên. Giải thích ML cho SV năm 1 CNTT, dùng ví dụ đời thường, format: định nghĩa → ví dụ → ứng dụng. 300 từ."</p><div class="cres ok">Rõ ràng, cấu trúc, phù hợp trình độ</div></div>
-          </div>
-          <h4 style="margin-top:14px">// 5 Nguyên tắc Prompt Engineering</h4>
-          <div style="margin-top:8px">
-            <div class="principle"><strong>① Persona</strong> — Gán vai trò cụ thể cho AI</div>
-            <div class="principle"><strong>② Audience</strong> — Xác định đối tượng và trình độ đích</div>
-            <div class="principle"><strong>③ Format</strong> — Chỉ định cấu trúc đầu ra rõ ràng</div>
-            <div class="principle"><strong>④ Constraints</strong> — Giới hạn độ dài, phong cách ngôn ngữ</div>
-            <div class="principle"><strong>⑤ Context</strong> — Thêm ngữ cảnh và ví dụ minh họa</div>
-          </div>
-        </div>
-        <div class="tools"><span class="tool">ChatGPT-4o</span><span class="tool">Claude Sonnet</span><span class="tool">Prompt Engineering</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Phân tích hiệu quả và đúc kết 5 nguyên tắc vàng để viết Prompt hiệu quả (Context, Specificity, Structuring, CoT, Iteration).</div></div>
+        <div class="tools"><span class="tool">ChatGPT</span><span class="tool">Prompting</span></div>
+        <a href="https://drive.google.com/drive/folders/1gpwkLfkOtvRuYAojg3MLLOvspYMSsaw-?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
-    <!-- BÀI 4 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">04</div>
-        <span class="ptag">Bài tập 3 · Mục 4.4</span>
-        <h3>Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
-        <p>Quản lý dự án nhóm bằng công cụ số, phân công nhiệm vụ, theo dõi tiến độ và hợp tác tài liệu thời gian thực.</p>
+        <span class="ptag">Bài tập 4</span>
+        <h3>Hợp tác trực tuyến cho dự án nhóm</h3>
+        <p>Thiết lập và sử dụng các công cụ hợp tác trực tuyến (Trello, Google Docs, Slack, Google Drive) để quản lý dự án.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Dự án nhóm 4 người hoàn thành qua Notion + Google Docs + Discord. Có ảnh chụp bảng Kanban và lịch sử thay đổi tài liệu.</div></div>
-        <div class="dbox">
-          <h4>// Bộ công cụ hợp tác nhóm</h4>
-          <div class="prow3">
-            <div class="pbox"><span class="pbox-icon">📝</span><div class="pbox-name">Notion</div><div class="pbox-desc">Kanban board, task, deadline</div></div>
-            <div class="pbox"><span class="pbox-icon">📄</span><div class="pbox-name">Google Docs</div><div class="pbox-desc">Cộng tác, comment, version</div></div>
-            <div class="pbox"><span class="pbox-icon">💬</span><div class="pbox-name">Discord</div><div class="pbox-desc">Họp online, chia sẻ tệp</div></div>
-          </div>
-          <h4 style="margin-top:14px">// Phân công & kết quả nhóm</h4>
-          <table class="tbl" style="margin-top:8px">
-            <tr><th>Thành viên</th><th>Nhiệm vụ</th><th>Status</th></tr>
-            <tr><td><strong style="color:var(--teal)">Bùi Quốc Việt (Trưởng)</strong></td><td>Tổng hợp, báo cáo</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
-            <tr><td>Trần Thị B</td><td>Nghiên cứu tài liệu</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
-            <tr><td>Lê Văn C</td><td>Thiết kế slide</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
-            <tr><td>Phạm Thị D</td><td>Thuyết trình</td><td><span class="bdg b-ok">✓ Done</span></td></tr>
-          </table>
-        </div>
-        <div class="tools"><span class="tool">Notion</span><span class="tool">Google Docs</span><span class="tool">Discord</span><span class="tool">Kanban</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Báo cáo phân tích hiệu quả công cụ, thách thức và giải pháp khi quản lý luồng công việc, soạn thảo, giao tiếp và lưu trữ trực tuyến.</div></div>
+        <div class="tools"><span class="tool">Trello</span><span class="tool">Google Docs</span><span class="tool">Slack</span></div>
+        <a href="https://drive.google.com/drive/folders/1NqPfPBVbHa27ruu4KU-VDMbb6BmvX4UE?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
-    <!-- BÀI 5 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">05</div>
-        <span class="ptag">Bài tập 2 · Mục 5.4</span>
-        <h3>Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
-        <p>Tạo sản phẩm nội dung số chất lượng cao (bài viết + hình ảnh) với AI tạo sinh, mô tả chi tiết quy trình sản xuất.</p>
+        <span class="ptag">Bài tập 5</span>
+        <h3>Sử dụng AI hỗ trợ sáng tạo nội dung</h3>
+        <p>Ứng dụng công cụ AI (Google Gemini, Canva AI, DALL-E) tạo nội dung cho Infographic tóm tắt 4 tính chất OOP trong Java.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bài blog 800 từ về "Tác động AI với giáo dục" + 3 infographic tạo bằng Midjourney. Chuyên nghiệp, sáng tạo, workflow đầy đủ.</div></div>
-        <div class="dbox">
-          <h4>// Quy trình sáng tạo nội dung với AI</h4>
-          <ul class="step-list">
-            <li><span><strong style="color:var(--text)">Lên ý tưởng:</strong> Xác định chủ đề, đối tượng đọc, tone giọng văn và mục tiêu nội dung</span></li>
-            <li><span><strong style="color:var(--text)">Tạo outline (ChatGPT):</strong> Prompt chi tiết để tạo cấu trúc bài 800 từ theo format chuẩn blog</span></li>
-            <li><span><strong style="color:var(--text)">Viết nháp (Claude):</strong> Mở rộng từng phần, giọng văn tự nhiên, bổ sung số liệu thực tế</span></li>
-            <li><span><strong style="color:var(--text)">Tạo hình ảnh (Midjourney):</strong> Prompt chi tiết với style, lighting, composition cho 3 infographic</span></li>
-            <li><span><strong style="color:var(--text)">Biên tập & hoàn thiện:</strong> Kiểm tra thông tin, chỉnh giọng văn, tối ưu bố cục</span></li>
-          </ul>
-        </div>
-        <div class="tools"><span class="tool">ChatGPT-4o</span><span class="tool">Claude Sonnet</span><span class="tool">Midjourney v6</span><span class="tool">Canva</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bản nháp báo cáo chi tiết quá trình sử dụng AI, sự kết hợp giữa con người và AI (Human-in-the-loop), và phân tích vai trò của AI.</div></div>
+        <div class="tools"><span class="tool">Google Gemini</span><span class="tool">Canva AI</span></div>
+        <a href="https://drive.google.com/drive/folders/1vC1X-KOu7eTzf3DcYlCTGQ-QwjOGEae-?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
-    <!-- BÀI 6 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">06</div>
-        <span class="ptag">Bài tập 4 · Mục 6.4</span>
-        <h3>Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
-        <p>Nghiên cứu đạo đức AI, xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm dựa trên khung quốc tế.</p>
+        <span class="ptag">Bài tập 6</span>
+        <h3>Đạo đức & Trách nhiệm AI</h3>
+        <p>Nghiên cứu chính sách của trường đại học về việc sử dụng AI, phân tích các vấn đề đạo đức liên quan trong học thuật.</p>
       </div>
       <div class="pbody">
-        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bộ 7 nguyên tắc cá nhân sử dụng AI có trách nhiệm, kèm phân tích sâu các vấn đề đạo đức AI và đề xuất giải pháp thực tiễn.</div></div>
-        <div class="dbox">
-          <h4>// Bộ nguyên tắc AI có trách nhiệm</h4>
-          <div style="margin-top:8px">
-            <div class="principle"><strong>① Minh bạch:</strong> Luôn công khai khi sử dụng AI trong sản phẩm học tập</div>
-            <div class="principle"><strong>② Kiểm chứng:</strong> Không tin tưởng tuyệt đối — luôn fact-check từ nguồn đáng tin cậy</div>
-            <div class="principle"><strong>③ Liêm chính học thuật:</strong> AI hỗ trợ tư duy, không thay thế tư duy của bản thân</div>
-            <div class="principle"><strong>④ Bảo vệ quyền riêng tư:</strong> Không chia sẻ dữ liệu cá nhân nhạy cảm với AI</div>
-            <div class="principle"><strong>⑤ Nhận biết bias:</strong> Đọc kết quả AI với tư duy phản biện, AI có thiên kiến</div>
-            <div class="principle"><strong>⑥ Sử dụng có mục đích:</strong> Chỉ dùng AI khi thực sự cần, tránh phụ thuộc quá mức</div>
-            <div class="principle"><strong>⑦ Đóng góp tích cực:</strong> Chia sẻ kinh nghiệm sử dụng AI có đạo đức với cộng đồng</div>
-          </div>
-        </div>
-        <div class="tools"><span class="tool">UNESCO AI Ethics</span><span class="tool">EU AI Act</span><span class="tool">Critical Thinking</span><span class="tool">Digital Citizenship</span></div>
+        <div class="res-box"><div class="res-label">// Sản phẩm đạt được</div><div class="res-txt">Bộ 6 nguyên tắc cá nhân về cách sử dụng AI có trách nhiệm, minh họa trực quan bộ nguyên tắc bằng Infographic.</div></div>
+        <div class="tools"><span class="tool">AI Ethics</span><span class="tool">Academic Integrity</span></div>
+        <a href="https://drive.google.com/drive/folders/154I3KKL6NK5AKZ6Uqbd69kRJC8Q5nxzc?usp=drive_link" target="_blank" class="proof-link">🔗 Xem minh chứng →</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══ TỔNG KẾT ══ -->
 <section id="tong-ket">
   <div class="s-chip">III. Trang Tổng kết</div>
   <h2 class="s-title">Hành trình & Bài học</h2>
@@ -747,14 +1031,36 @@ footer strong{color:var(--teal);}
       <p>Trở thành chuyên gia mạng có tư duy số vững chắc — ứng dụng AI có trách nhiệm và đóng góp tích cực cho cộng đồng công nghệ Việt Nam.</p>
     </div>
   </div>
+
+  <div class="contact-section fade-up">
+    <h3 class="contact-title">Liên hệ với tôi</h3>
+    <ul class="contact-list">
+      <li class="contact-item">
+        <div class="contact-icon">📱</div>
+        <span class="contact-label">Điện thoại</span>
+        <a href="tel:0346913632" class="contact-val">0346913632</a>
+      </li>
+      <li class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:viet07012007dz@gmail.com" class="contact-val">viet07012007dz@gmail.com</a>
+      </li>
+      <li class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <span class="contact-label">Facebook</span>
+        <a href="https://www.facebook.com/viet.tanaka.7/" target="_blank" class="contact-val">viet.tanaka.7</a>
+      </li>
+    </ul>
+  </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-links">
     <a href="#home">Home</a>
     <a href="#gioi-thieu">Giới thiệu</a>
-    <a href="#du-an">Dự án</a>
+    <a href="#so-thich">Sở thích</a>
+    <a href="#thanh-tuu">Dự án cá nhân</a>
+    <a href="#du-an">Bài tập</a>
     <a href="#tong-ket">Tổng kết</a>
   </div>
   <p><strong>Bùi Quốc Việt</strong> · Mạng Máy Tính và Truyền Thông Dữ Liệu · ĐHQG Hà Nội</p>
@@ -839,7 +1145,29 @@ function draw(){
 }
 draw();
 
-/* ── FADE UP ── */
+/* ── AVATAR UPLOAD ── */
+const avatarInput = document.getElementById('avatarInput');
+const avatarImg   = document.getElementById('avatarImg');
+const avatarPH    = document.getElementById('avatarPlaceholder');
+const avatarInner = document.getElementById('avatarInner');
+
+if(avatarInput){
+  avatarInput.addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      avatarImg.src = e.target.result;
+      avatarImg.style.display = 'block';
+      avatarPH.style.display  = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+  // Also allow clicking the inner area to upload
+  avatarInner.addEventListener('click', ()=> avatarInput.click());
+}
+
+
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:0.08});
