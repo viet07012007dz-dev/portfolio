@@ -169,6 +169,7 @@ section{padding:96px 7%;position:relative;z-index:1;}
 /* ── ABOUT ── */
 #gioi-thieu{background:var(--bg2);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.about-grid-new{display:grid;grid-template-columns:220px 1fr 1fr;gap:52px;align-items:start;}
 .about-text p{color:var(--muted);margin-bottom:18px;font-size:15px;line-height:1.9;}
 .terminal-quote{
   background:var(--card);border:1px solid var(--border);
@@ -230,8 +231,61 @@ section{padding:96px 7%;position:relative;z-index:1;}
 .ip-list li:last-child{border:none;}
 .ip-list li::before{content:'→';color:var(--teal);font-weight:700;font-family:var(--mono);}
 
+/* ── AVATAR ── */
+.avatar-col{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.avatar-wrap{position:relative;width:160px;height:160px;}
+.avatar-ring{
+  position:absolute;inset:-6px;border-radius:50%;
+  background:conic-gradient(var(--teal),var(--blue),var(--purple),var(--teal));
+  animation:spin 6s linear infinite;z-index:0;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.avatar-inner{
+  position:absolute;inset:3px;border-radius:50%;
+  background:var(--card2);z-index:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;transition:box-shadow 0.3s;
+}
+.avatar-wrap:hover .avatar-inner{box-shadow:0 0 30px var(--glow);}
+.avatar-info{text-align:center;}
+.av-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.av-sub{font-size:12px;color:var(--muted);margin-bottom:3px;}
+.av-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
+.av-badge{
+  background:rgba(0,229,176,0.07);border:1px solid var(--border);
+  border-radius:100px;padding:3px 10px;font-size:10px;color:var(--teal);
+  font-family:var(--mono);font-weight:600;
+}
+
+/* ── HOBBY SECTION ── */
+.hobby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.hobby-card{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:26px 22px;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.hobby-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--blue),var(--purple));
+  opacity:0;transition:opacity 0.3s;
+}
+.hobby-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 16px 40px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
+.hobby-card:hover::before{opacity:1;}
+.hobby-icon{font-size:34px;margin-bottom:12px;display:block;}
+.hobby-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.hobby-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.hobby-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.htag{
+  background:rgba(0,229,176,0.06);border:1px solid var(--border);
+  border-radius:100px;padding:2px 10px;
+  font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.5px;
+  transition:border-color 0.2s,color 0.2s;
+}
+.hobby-card:hover .htag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
+
 /* ── PROJECTS ── */
-#du-an{background:var(--bg);}
+#du-an, #thanh-tuu{background:var(--bg);}
+#thanh-tuu{background:var(--bg2);}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;}
 
 .pcard{
@@ -239,6 +293,8 @@ section{padding:96px 7%;position:relative;z-index:1;}
   border-radius:20px;overflow:hidden;
   transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
   position:relative;
+  display: flex;
+  flex-direction: column;
 }
 /* top accent line */
 .pcard::before{
@@ -268,7 +324,48 @@ section{padding:96px 7%;position:relative;z-index:1;}
   color:var(--text);line-height:1.3;margin-bottom:10px;max-width:82%;
 }
 .pcard>.ptop>p{font-size:13px;color:var(--muted);line-height:1.7;}
-.pbody{padding:0 26px 26px;}
+.pbody{padding:0 26px 26px; flex-grow: 1; display: flex; flex-direction: column;}
+
+.pj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.pj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:28px 28px 22px;
+  display:flex;flex-direction:column;gap:0;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.pj-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal) 50%,transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.pj-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px var(--glow2);}
+.pj-card:hover::after{opacity:1;}
+.pj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.pj-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);line-height:1.3;flex:1;}
+.pj-status{
+  flex-shrink:0;padding:4px 12px;border-radius:100px;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.5px;
+  white-space:nowrap;margin-top:2px;
+}
+.pj-done{background:rgba(0,229,176,0.12);color:var(--teal);border:1px solid rgba(0,229,176,0.25);}
+.pj-wip{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.25);}
+.pj-plan{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.25);}
+.pj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;flex:1;}
+.pj-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
+.pj-tag{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+  border-radius:5px;padding:3px 10px;
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  transition:border-color 0.2s,color 0.2s;
+}
+.pj-card:hover .pj-tag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
+.pj-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--teal);
+  text-decoration:none;transition:gap 0.2s;width:fit-content;
+}
+.pj-link:hover{gap:10px;}
 
 .res-box{
   background:rgba(0,229,176,0.04);border:1px solid var(--border);
@@ -345,6 +442,42 @@ code.c{background:rgba(0,229,176,0.08);color:var(--teal);padding:2px 7px;border-
   transition:border-color 0.2s,color 0.2s;
 }
 .tool:hover{border-color:var(--teal);color:var(--teal);}
+
+/* Nút Minh Chứng Mới */
+.proof-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  border: 1px solid var(--border2);
+  padding: 8px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: auto; /* Đẩy nút xuống dưới cùng của card */
+  width: fit-content;
+}
+.proof-link:hover {
+  background: rgba(0, 229, 176, 0.1);
+  border-color: var(--teal);
+  box-shadow: 0 0 15px var(--glow2);
+}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px 20px;text-align:center;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 12px 36px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
+.stat-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px;}
+.stat-label{font-size:12px;color:var(--muted);font-family:var(--mono);}
 
 /* ── CONCLUSION ── */
 #tong-ket{background:var(--bg2);}
@@ -485,152 +618,6 @@ footer p{font-size:13px;color:var(--muted);}
 footer strong{color:var(--teal);}
 .footer-mono{font-family:var(--mono);font-size:11px;color:rgba(107,144,128,0.5);margin-top:8px;}
 
-/* ── ABOUT NEW GRID ── */
-.about-grid-new{display:grid;grid-template-columns:220px 1fr 1fr;gap:52px;align-items:start;}
-.about-text p{color:var(--muted);margin-bottom:18px;font-size:15px;line-height:1.9;}
-
-/* ── AVATAR ── */
-.avatar-col{display:flex;flex-direction:column;align-items:center;gap:20px;}
-.avatar-wrap{position:relative;width:160px;height:160px;cursor:pointer;}
-.avatar-ring{
-  position:absolute;inset:-6px;border-radius:50%;
-  background:conic-gradient(var(--teal),var(--blue),var(--purple),var(--teal));
-  animation:spin 6s linear infinite;z-index:0;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
-.avatar-inner{
-  position:absolute;inset:3px;border-radius:50%;
-  background:var(--card2);z-index:1;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;transition:box-shadow 0.3s;
-}
-.avatar-wrap:hover .avatar-inner{box-shadow:0 0 30px var(--glow);}
-.avatar-placeholder{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;}
-.avatar-initials{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--teal);line-height:1;}
-.avatar-hint{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;letter-spacing:1px;}
-.avatar-upload-btn{
-  position:absolute;bottom:4px;right:4px;z-index:2;
-  width:32px;height:32px;border-radius:50%;
-  background:var(--teal);color:#03060a;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;border:2px solid var(--bg);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-.avatar-upload-btn:hover{transform:scale(1.15);box-shadow:0 0 12px rgba(0,229,176,0.5);}
-.avatar-info{text-align:center;}
-.av-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:6px;}
-.av-sub{font-size:12px;color:var(--muted);margin-bottom:3px;}
-.av-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
-.av-badge{
-  background:rgba(0,229,176,0.07);border:1px solid var(--border);
-  border-radius:100px;padding:3px 10px;font-size:10px;color:var(--teal);
-  font-family:var(--mono);font-weight:600;
-}
-
-/* ── HOBBY SECTION ── */
-.hobby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.hobby-card{
-  background:var(--card);border:1px solid var(--border);border-radius:18px;
-  padding:26px 22px;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
-  position:relative;overflow:hidden;
-}
-.hobby-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--teal),var(--blue),var(--purple));
-  opacity:0;transition:opacity 0.3s;
-}
-.hobby-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 16px 40px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
-.hobby-card:hover::before{opacity:1;}
-.hobby-icon{font-size:34px;margin-bottom:12px;display:block;}
-.hobby-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;}
-.hobby-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
-.hobby-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.htag{
-  background:rgba(0,229,176,0.06);border:1px solid var(--border);
-  border-radius:100px;padding:2px 10px;
-  font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.5px;
-  transition:border-color 0.2s,color 0.2s;
-}
-.hobby-card:hover .htag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
-
-/* ── PROJECT CARDS (I.C) ── */
-.pj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.pj-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;padding:28px 28px 22px;
-  display:flex;flex-direction:column;gap:0;
-  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
-  position:relative;overflow:hidden;
-}
-.pj-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--teal) 50%,transparent);
-  opacity:0;transition:opacity 0.3s;
-}
-.pj-card:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px var(--glow2);}
-.pj-card:hover::after{opacity:1;}
-.pj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;}
-.pj-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);line-height:1.3;flex:1;}
-.pj-status{
-  flex-shrink:0;padding:4px 12px;border-radius:100px;
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.5px;
-  white-space:nowrap;margin-top:2px;
-}
-.pj-done{background:rgba(0,229,176,0.12);color:var(--teal);border:1px solid rgba(0,229,176,0.25);}
-.pj-wip{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.25);}
-.pj-plan{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.25);}
-.pj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;flex:1;}
-.pj-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
-.pj-tag{
-  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
-  border-radius:5px;padding:3px 10px;
-  font-family:var(--mono);font-size:10px;color:var(--muted);
-  transition:border-color 0.2s,color 0.2s;
-}
-.pj-card:hover .pj-tag{border-color:rgba(0,229,176,0.2);color:var(--teal);}
-.pj-link{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--teal);
-  text-decoration:none;transition:gap 0.2s;width:fit-content;
-}
-.pj-link:hover{gap:10px;}
-
-/* Nút Minh Chứng Mới */
-.proof-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--teal);
-  border: 1px solid var(--border2);
-  padding: 8px 16px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: auto; /* Đẩy nút xuống dưới cùng của card */
-  width: fit-content;
-}
-.proof-link:hover {
-  background: rgba(0, 229, 176, 0.1);
-  border-color: var(--teal);
-  box-shadow: 0 0 15px var(--glow2);
-}
-
-/* ── STATS ROW ── */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.stat-card{
-  background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:28px 20px;text-align:center;
-  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
-}
-.stat-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 12px 36px rgba(0,0,0,0.3),0 0 30px var(--glow2);}
-.stat-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px;}
-.stat-label{font-size:12px;color:var(--muted);font-family:var(--mono);}
-
 /* ── RESPONSIVE UPDATE ── */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
@@ -651,7 +638,6 @@ footer strong{color:var(--teal);}
   .proj-grid{grid-template-columns:1fr;}
   .cmp2,.prow3{grid-template-columns:1fr;}
   .hobby-grid{grid-template-columns:1fr 1fr;}
-  .stats-row{grid-template-columns:1fr 1fr;}
   .pj-grid{grid-template-columns:1fr;}
   .contact-list {flex-direction: column; align-items: center;}
 }
@@ -664,14 +650,15 @@ footer strong{color:var(--teal);}
   .hcard{min-width:100%;}
   .sk-grid{grid-template-columns:1fr;}
   .hobby-grid{grid-template-columns:1fr;}
-  .stats-row{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 
+<!-- ANIMATED CANVAS BG -->
 <canvas id="canvas-bg"></canvas>
 
+<!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">BQV.dev</a>
   <ul class="nav-links">
@@ -684,6 +671,7 @@ footer strong{color:var(--teal);}
   <div class="nav-dot"></div>
 </nav>
 
+<!-- ══ HERO ══ -->
 <section id="home">
   <div class="hero-chip"><span class="chip-dot"></span>Portfolio Kỹ Thuật Số · 2025–2026</div>
 
@@ -707,25 +695,19 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ GIỚI THIỆU ══ -->
 <section id="gioi-thieu">
   <div class="s-chip">I. Giới thiệu cá nhân</div>
   <h2 class="s-title">Tôi là ai?</h2>
 
   <div class="about-grid-new">
+    <!-- AVATAR COLUMN -->
     <div class="fade-up avatar-col">
-      <div class="avatar-wrap" id="avatarWrap">
+      <div class="avatar-wrap">
         <div class="avatar-ring"></div>
-        <div class="avatar-inner" id="avatarInner">
-          <img id="avatarImg" src="anhnop.png" alt="" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;">
-          <div class="avatar-placeholder" id="avatarPlaceholder" style="display:none;">
-            <span class="avatar-initials">BQV</span>
-            <span class="avatar-hint">Nhấn để tải ảnh lên</span>
-          </div>
+        <div class="avatar-inner">
+          <img src="anhnop.png" alt="Bùi Quốc Việt" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;">
         </div>
-        <label class="avatar-upload-btn" for="avatarInput" title="Tải ảnh lên">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        </label>
-        <input type="file" id="avatarInput" accept="image/*" style="display:none;">
       </div>
       <div class="avatar-info">
         <div class="av-name">Bùi Quốc Việt</div>
@@ -740,6 +722,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- TEXT COLUMN -->
     <div class="fade-up">
       <p>Xin chào! Tôi là <strong style="color:var(--teal)">Bùi Quốc Việt</strong>, sinh viên năm nhất ngành Mạng Máy Tính và Truyền Thông Dữ Liệu tại Đại học Quốc gia Hà Nội. Tôi có niềm đam mê với hạ tầng mạng, bảo mật thông tin và cách các hệ thống truyền thông dữ liệu kết nối thế giới hiện đại.</p>
       <p>Sinh ra và lớn lên ở Thanh Hóa, tôi luôn bị cuốn hút bởi cách các hệ thống mạng vận hành và tiềm năng vô hạn của truyền thông dữ liệu trong kỷ nguyên số. Tôi tin rằng nền tảng kỹ thuật số vững chắc là chìa khóa để mở ra những cơ hội nghề nghiệp trong tương lai.</p>
@@ -754,6 +737,7 @@ footer strong{color:var(--teal);}
       </ul>
     </div>
 
+    <!-- SKILLS COLUMN -->
     <div class="fade-up">
       <div class="s-chip" style="margin-bottom:14px">Kỹ năng đã học</div>
       <div class="sk-grid">
@@ -777,6 +761,7 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ SỞ THÍCH ══ -->
 <section id="so-thich" style="background:var(--bg);">
   <div class="s-chip">I.B. Sở thích cá nhân</div>
   <h2 class="s-title">Điều tôi yêu thích</h2>
@@ -821,6 +806,7 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ DỰ ÁN CÁ NHÂN ══ -->
 <section id="thanh-tuu" style="background:var(--bg2);">
   <div class="s-chip">I.C. Dự án cá nhân</div>
   <h2 class="s-title">Những điều tôi đã xây</h2>
@@ -887,6 +873,7 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ DỰ ÁN (BÀI TẬP) ══ -->
 <section id="du-an">
   <div class="s-chip">II. Trang Dự Án</div>
   <h2 class="s-title">6 Bài Tập Hoàn Thành</h2>
@@ -894,6 +881,7 @@ footer strong{color:var(--teal);}
 
   <div class="proj-grid">
 
+    <!-- BÀI 1 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">01</div>
@@ -908,6 +896,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- BÀI 2 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">02</div>
@@ -922,6 +911,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- BÀI 3 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">03</div>
@@ -936,6 +926,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- BÀI 4 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">04</div>
@@ -950,6 +941,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- BÀI 5 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">05</div>
@@ -964,6 +956,7 @@ footer strong{color:var(--teal);}
       </div>
     </div>
 
+    <!-- BÀI 6 -->
     <div class="pcard fade-up">
       <div class="ptop">
         <div class="pnum">06</div>
@@ -981,6 +974,7 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ TỔNG KẾT ══ -->
 <section id="tong-ket">
   <div class="s-chip">III. Trang Tổng kết</div>
   <h2 class="s-title">Hành trình & Bài học</h2>
@@ -1032,6 +1026,7 @@ footer strong{color:var(--teal);}
     </div>
   </div>
 
+  <!-- CONTACT SECTION -->
   <div class="contact-section fade-up">
     <h3 class="contact-title">Liên hệ với tôi</h3>
     <ul class="contact-list">
@@ -1054,6 +1049,7 @@ footer strong{color:var(--teal);}
   </div>
 </section>
 
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-links">
     <a href="#home">Home</a>
@@ -1144,29 +1140,6 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
-
-/* ── AVATAR UPLOAD ── */
-const avatarInput = document.getElementById('avatarInput');
-const avatarImg   = document.getElementById('avatarImg');
-const avatarPH    = document.getElementById('avatarPlaceholder');
-const avatarInner = document.getElementById('avatarInner');
-
-if(avatarInput){
-  avatarInput.addEventListener('change', function(){
-    const file = this.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e){
-      avatarImg.src = e.target.result;
-      avatarImg.style.display = 'block';
-      avatarPH.style.display  = 'none';
-    };
-    reader.readAsDataURL(file);
-  });
-  // Also allow clicking the inner area to upload
-  avatarInner.addEventListener('click', ()=> avatarInput.click());
-}
-
 
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
